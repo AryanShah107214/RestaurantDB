@@ -18,7 +18,7 @@ namespace RestaurantDB.Data
 
         public DbSet<RestaurantWebApp.Models.Customer> Customer { get; set; }
 
-        public DbSet<RestaurantWebApp.Models.Invoice> Invoice { get; set; }
+        //public DbSet<RestaurantWebApp.Models.Invoice> Invoice { get; set; }
 
         public DbSet<RestaurantWebApp.Models.FoodMenu> FoodMenu { get; set; }
     }

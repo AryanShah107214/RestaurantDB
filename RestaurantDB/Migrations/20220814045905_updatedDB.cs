@@ -2,7 +2,7 @@
 
 namespace RestaurantDB.Migrations
 {
-    public partial class MigrationTwo : Migration
+    public partial class updatedDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,12 +10,11 @@ namespace RestaurantDB.Migrations
                 name: "FK_FoodMenu_FoodItem_FoodItemID",
                 table: "FoodMenu");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Invoice_Order_OrderID",
-                table: "Invoice");
-
             migrationBuilder.DropTable(
                 name: "FoodItem");
+
+            migrationBuilder.DropTable(
+                name: "Invoice");
 
             migrationBuilder.DropIndex(
                 name: "IX_FoodMenu_FoodItemID",
@@ -25,70 +24,34 @@ namespace RestaurantDB.Migrations
                 name: "FoodItemID",
                 table: "FoodMenu");
 
-            migrationBuilder.AddColumn<int>(
-                name: "OrderNumber",
+            migrationBuilder.AlterColumn<double>(
+                name: "Cost",
                 table: "Order",
-                type: "int",
+                type: "float",
                 nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AlterColumn<int>(
-                name: "OrderID",
-                table: "Invoice",
-                type: "int",
-                nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
-
-            migrationBuilder.AddColumn<int>(
-                name: "OrderNumber",
-                table: "Invoice",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
                 name: "FoodName",
                 table: "FoodMenu",
                 type: "nvarchar(max)",
                 nullable: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Invoice_Order_OrderID",
-                table: "Invoice",
-                column: "OrderID",
-                principalTable: "Order",
-                principalColumn: "OrderID",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Invoice_Order_OrderID",
-                table: "Invoice");
-
-            migrationBuilder.DropColumn(
-                name: "OrderNumber",
-                table: "Order");
-
-            migrationBuilder.DropColumn(
-                name: "OrderNumber",
-                table: "Invoice");
-
             migrationBuilder.DropColumn(
                 name: "FoodName",
                 table: "FoodMenu");
 
             migrationBuilder.AlterColumn<int>(
-                name: "OrderID",
-                table: "Invoice",
+                name: "Cost",
+                table: "Order",
                 type: "int",
                 nullable: false,
-                defaultValue: 0,
-                oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
+                oldClrType: typeof(double),
+                oldType: "float");
 
             migrationBuilder.AddColumn<int>(
                 name: "FoodItemID",
@@ -117,6 +80,26 @@ namespace RestaurantDB.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Invoice",
+                columns: table => new
+                {
+                    InvoiceID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderID = table.Column<int>(type: "int", nullable: false),
+                    total = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoice", x => x.InvoiceID);
+                    table.ForeignKey(
+                        name: "FK_Invoice_Order_OrderID",
+                        column: x => x.OrderID,
+                        principalTable: "Order",
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_FoodMenu_FoodItemID",
                 table: "FoodMenu",
@@ -127,20 +110,17 @@ namespace RestaurantDB.Migrations
                 table: "FoodItem",
                 column: "OrderID");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Invoice_OrderID",
+                table: "Invoice",
+                column: "OrderID");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_FoodMenu_FoodItem_FoodItemID",
                 table: "FoodMenu",
                 column: "FoodItemID",
                 principalTable: "FoodItem",
                 principalColumn: "FoodItemID",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Invoice_Order_OrderID",
-                table: "Invoice",
-                column: "OrderID",
-                principalTable: "Order",
-                principalColumn: "OrderID",
                 onDelete: ReferentialAction.Cascade);
         }
     }
