@@ -10,22 +10,30 @@ using RestaurantWebApp.Models;
 
 namespace RestaurantDB.Views
 {
-    public class FoodMenusController : Controller
+    public class OrdersController : Controller
     {
         private readonly RestaurantDBContext _context;
 
-        public FoodMenusController(RestaurantDBContext context)
+        public OrdersController(RestaurantDBContext context)
         {
             _context = context;
         }
 
-        // GET: FoodMenus
-        public async Task<IActionResult> Index()
+        // GET: Orders
+        public IActionResult Index()
         {
-            return View(await _context.FoodMenu.ToListAsync());
+            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
+            return View(_context.Order.ToList());
         }
 
-        // GET: FoodMenus/Details/5
+        public IActionResult Indexs()
+        {
+            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
+            return View("Index", restaurantDBContext.Order.ToList().GroupBy(Order => Order.CustomerID));
+
+        }
+
+        // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +41,42 @@ namespace RestaurantDB.Views
                 return NotFound();
             }
 
-            var foodMenu = await _context.FoodMenu
-                .FirstOrDefaultAsync(m => m.FoodMenuID == id);
-            if (foodMenu == null)
+            var order = await _context.Order
+                .Include(o => o.Customer)
+                .FirstOrDefaultAsync(m => m.OrderID == id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(foodMenu);
+            return View(order);
         }
 
-        // GET: FoodMenus/Create
+        // GET: Orders/Create
         public IActionResult Create()
         {
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID");
             return View();
         }
 
-        // POST: FoodMenus/Create
+        // POST: Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FoodMenuID,FoodName,Price,Category")] FoodMenu foodMenu)
+        public async Task<IActionResult> Create([Bind("OrderID,OrderNumber,OrderItem,Quantity,Size,Cost,CustomerID")] Order order)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(foodMenu);
+                _context.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(foodMenu);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID", order.CustomerID);
+            return View(order);
         }
 
-        // GET: FoodMenus/Edit/5
+        // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +84,23 @@ namespace RestaurantDB.Views
                 return NotFound();
             }
 
-            var foodMenu = await _context.FoodMenu.FindAsync(id);
-            if (foodMenu == null)
+            var order = await _context.Order.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
-            return View(foodMenu);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID", order.CustomerID);
+            return View(order);
         }
 
-        // POST: FoodMenus/Edit/5
+        // POST: Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FoodMenuID,FoodName,Price,Category")] FoodMenu foodMenu)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderID,OrderNumber,OrderItem,Quantity,Size,Cost,CustomerID")] Order order)
         {
-            if (id != foodMenu.FoodMenuID)
+            if (id != order.OrderID)
             {
                 return NotFound();
             }
@@ -97,12 +109,12 @@ namespace RestaurantDB.Views
             {
                 try
                 {
-                    _context.Update(foodMenu);
+                    _context.Update(order);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FoodMenuExists(foodMenu.FoodMenuID))
+                    if (!OrderExists(order.OrderID))
                     {
                         return NotFound();
                     }
@@ -113,10 +125,11 @@ namespace RestaurantDB.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(foodMenu);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID", order.CustomerID);
+            return View(order);
         }
 
-        // GET: FoodMenus/Delete/5
+        // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +137,31 @@ namespace RestaurantDB.Views
                 return NotFound();
             }
 
-            var foodMenu = await _context.FoodMenu
-                .FirstOrDefaultAsync(m => m.FoodMenuID == id);
-            if (foodMenu == null)
+            var order = await _context.Order
+                .Include(o => o.Customer)
+                .FirstOrDefaultAsync(m => m.OrderID == id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(foodMenu);
+            return View(order);
         }
 
-        // POST: FoodMenus/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var foodMenu = await _context.FoodMenu.FindAsync(id);
-            _context.FoodMenu.Remove(foodMenu);
+            var order = await _context.Order.FindAsync(id);
+            _context.Order.Remove(order);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FoodMenuExists(int id)
+        private bool OrderExists(int id)
         {
-            return _context.FoodMenu.Any(e => e.FoodMenuID == id);
+            return _context.Order.Any(e => e.OrderID == id);
         }
     }
 }
