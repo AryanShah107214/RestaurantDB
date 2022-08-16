@@ -20,9 +20,9 @@ namespace RestaurantDB.Views
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Customer.ToListAsync());
+            return View( _context.Customer.ToList().OrderBy(Customer => Customer.FirstName));
         }
 
         // GET: Customers/Details/5

@@ -26,11 +26,22 @@ namespace RestaurantDB.Views
             return View(_context.Order.ToList());
         }
 
-        public IActionResult Indexs()
+        public IActionResult Customer1()
         {
             var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
-            return View("Index", restaurantDBContext.Order.ToList().GroupBy(Order => Order.CustomerID));
+            return View("Index", _context.Order.ToList().Where(Order => Order.CustomerID == 1));
+        }
 
+        public IActionResult Customer2()
+        {
+            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
+            return View("Index", _context.Order.ToList().Where(Order => Order.CustomerID == 2));
+        }
+
+        public IActionResult Customer3()
+        {
+            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
+            return View("Index", _context.Order.ToList().Where(Order => Order.CustomerID == 3));
         }
 
         // GET: Orders/Details/5
