@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RestaurantDB.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace RestaurantDB
 {
@@ -29,6 +30,11 @@ namespace RestaurantDB
 
             services.AddDbContext<RestaurantDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RestaurantDBContext")));
+
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<RestaurantDBContext>();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,12 +56,15 @@ namespace RestaurantDB
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
