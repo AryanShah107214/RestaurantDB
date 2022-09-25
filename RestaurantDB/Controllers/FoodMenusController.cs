@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using RestaurantDB.Data;
 using RestaurantWebApp.Models;
 
-namespace RestaurantDB.Views
+namespace RestaurantDB.Views.FoodMenus
 {
     public class FoodMenusController : Controller
     {
@@ -20,29 +20,9 @@ namespace RestaurantDB.Views
         }
 
         // GET: FoodMenus
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_context.FoodMenu.ToList().OrderBy(FoodMenu => FoodMenu.FoodName));
-        }
-
-        public IActionResult Entrees()
-        {
-            return View("Index", _context.FoodMenu.ToList().Where(FoodMenu => FoodMenu.Category == "Entree").OrderBy(FoodMenu => FoodMenu.FoodName));
-        }
-
-        public IActionResult Mains()
-        {
-            return View("Index", _context.FoodMenu.ToList().Where(FoodMenu => FoodMenu.Category == "Main").OrderBy(FoodMenu => FoodMenu.FoodName));
-        }
-
-        public IActionResult Deserts()
-        {
-            return View("Index", _context.FoodMenu.ToList().Where(FoodMenu => FoodMenu.Category == "Desert").OrderBy(FoodMenu => FoodMenu.FoodName));
-        }
-
-        public IActionResult Drinks()
-        {
-            return View("Index", _context.FoodMenu.ToList().Where(FoodMenu => FoodMenu.Category == "Drinks").OrderBy(FoodMenu => FoodMenu.FoodName));
+            return View(await _context.FoodMenu.ToListAsync());
         }
 
         // GET: FoodMenus/Details/5
@@ -63,7 +43,11 @@ namespace RestaurantDB.Views
             return View(foodMenu);
         }
 
-
+        // GET: FoodMenus/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         // POST: FoodMenus/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

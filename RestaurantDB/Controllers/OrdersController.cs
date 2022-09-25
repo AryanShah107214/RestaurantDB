@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using RestaurantDB.Data;
 using RestaurantWebApp.Models;
 
-namespace RestaurantDB.Views
+namespace RestaurantDB.Views.Orders
 {
     public class OrdersController : Controller
     {
@@ -20,28 +20,10 @@ namespace RestaurantDB.Views
         }
 
         // GET: Orders
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
-            return View(_context.Order.ToList());
-        }
-
-        public IActionResult Customer1()
-        {
-            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
-            return View("Index", _context.Order.ToList().Where(Order => Order.CustomerID == 1));
-        }
-
-        public IActionResult Customer2()
-        {
-            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
-            return View("Index", _context.Order.ToList().Where(Order => Order.CustomerID == 2));
-        }
-
-        public IActionResult Customer3()
-        {
-            var restaurantDBContext = _context.Order.Include(Order => Order.Customer);
-            return View("Index", _context.Order.ToList().Where(Order => Order.CustomerID == 3));
+            var restaurantDBContext = _context.Order.Include(o => o.Customer);
+            return View(await restaurantDBContext.ToListAsync());
         }
 
         // GET: Orders/Details/5
@@ -66,7 +48,7 @@ namespace RestaurantDB.Views
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID");
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "Email");
             return View();
         }
 
@@ -75,7 +57,7 @@ namespace RestaurantDB.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderID,OrderNumber,OrderItem,Quantity,Size,Cost,CustomerID")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderID,OrderItem,Quantity,SpiceLevel,Cost,CustomerID")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +65,7 @@ namespace RestaurantDB.Views
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID", order.CustomerID);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "Email", order.CustomerID);
             return View(order);
         }
 
@@ -100,7 +82,7 @@ namespace RestaurantDB.Views
             {
                 return NotFound();
             }
-            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID", order.CustomerID);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "Email", order.CustomerID);
             return View(order);
         }
 
@@ -109,7 +91,7 @@ namespace RestaurantDB.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderID,OrderNumber,OrderItem,Quantity,Size,Cost,CustomerID")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderID,OrderItem,Quantity,SpiceLevel,Cost,CustomerID")] Order order)
         {
             if (id != order.OrderID)
             {
@@ -136,7 +118,7 @@ namespace RestaurantDB.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "CustomerID", order.CustomerID);
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "Email", order.CustomerID);
             return View(order);
         }
 

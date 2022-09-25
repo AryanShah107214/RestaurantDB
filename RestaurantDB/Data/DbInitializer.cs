@@ -75,18 +75,18 @@ namespace RestaurantDB.Data
 
             var Order = new Order[]
 {
-                new Order { OrderItem="Fanta",Quantity=1,Size="N/A",Cost=6.00,CustomerID=1 },
-                new Order { OrderItem="Gulab Jamun",Quantity=1,Size="N/A",Cost=9.00,CustomerID=1 },
-                new Order { OrderItem="Paneer Tikka Masala",Quantity=1,Size="Large",Cost=14.00,CustomerID=1 },
+                new Order { OrderItem="Fanta",Quantity=1,SpiceLevel="N/A",Cost=6.00,CustomerID=1 },
+                new Order { OrderItem="Gulab Jamun",Quantity=1,SpiceLevel="N/A",Cost=9.00,CustomerID=1 },
+                new Order { OrderItem="Paneer Tikka Masala",Quantity=1,SpiceLevel="Hot",Cost=14.00,CustomerID=1 },
 
-                new Order { OrderItem="Sprite",Quantity=1,Size="Drink",Cost=6.00,CustomerID=2 },
-                new Order { OrderItem="Mango Barfi",Quantity=1,Size="N/A",Cost=9.00,CustomerID=2 },
-                new Order { OrderItem="Undhiyu",Quantity=1,Size="Main/Large",Cost=14.00,CustomerID=2 },
+                new Order { OrderItem="Sprite",Quantity=1,SpiceLevel="",Cost=6.00,CustomerID=2 },
+                new Order { OrderItem="Mango Barfi",Quantity=1,SpiceLevel="",Cost=9.00,CustomerID=2 },
+                new Order { OrderItem="Undhiyu",Quantity=1,SpiceLevel="Medium",Cost=14.00,CustomerID=2 },
 
-                new Order { OrderItem="Veg Manchurian",Quantity=1,Size="Entree/Small",Cost=6.50,CustomerID=3 },
-                new Order { OrderItem="Fanta",Quantity=2,Size="Drink",Cost=12.00,CustomerID=3 },
-                new Order { OrderItem="Malai Kofta",Quantity=1,Size="Main/Large",Cost=14.00,CustomerID=3 },
-                new Order { OrderItem="Shahi Paneer",Quantity=1,Size="Main/Large",Cost=14.00,CustomerID=3 },
+                new Order { OrderItem="Veg Manchurian",Quantity=1,SpiceLevel="",Cost=6.50,CustomerID=3 },
+                new Order { OrderItem="Fanta",Quantity=2,SpiceLevel="",Cost=12.00,CustomerID=3 },
+                new Order { OrderItem="Malai Kofta",Quantity=1,SpiceLevel="Medium-Hot",Cost=14.00,CustomerID=3 },
+                new Order { OrderItem="Shahi Paneer",Quantity=1,SpiceLevel="Mild-Medium",Cost=14.00,CustomerID=3 },
 
 
 

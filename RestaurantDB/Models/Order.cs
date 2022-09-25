@@ -1,14 +1,26 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RestaurantWebApp.Models
 {
     public class Order
     {
         public int OrderID { get; set; }
+
+        [Required]
+        [Display(Name = "Order Item")]
         public string OrderItem { get; set; }
+
+        [Required]
         public int Quantity { get; set; }
-        public string Size { get; set; }
+        
+        [Display(Name = "Spice Level")]
+        public string SpiceLevel { get; set; }
+        
+        [Required]
         public double Cost { get; set; } 
+        
         public int CustomerID { get; set; }
         public Customer Customer { get; set; }
     }
