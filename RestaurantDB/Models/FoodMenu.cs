@@ -10,6 +10,8 @@ namespace RestaurantWebApp.Models
         [Display(Name = "Item Name")]
         public string FoodName { get; set; }
 
+        public string Description { get; set; }
+
         [Required]
         public double Price { get; set; }
         
