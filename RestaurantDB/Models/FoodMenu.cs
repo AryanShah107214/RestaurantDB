@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantWebApp.Models
 {
@@ -17,5 +20,14 @@ namespace RestaurantWebApp.Models
         
         [Required]
         public string Category { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Upload photo of item")]
+        [Required]
+        public IFormFile FoodPhoto { get; set; }
+
+        public string PhotoPath { get; set; }
+
+
     }
 }

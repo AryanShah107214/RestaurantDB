@@ -9,11 +9,28 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+
+    <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title>@Html.DisplayNameFor(model => model.FoodName)</h5>
+    <p class="card-text">@Html.DisplayNameFor(model => model.Category)</p>
+    <p class="card-text">@Html.DisplayNameFor(model => model.Description)</p>
+    <p class="card-text">@Html.DisplayNameFor(model => model.Price)</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+
+
+
+<table class="card" style="width: 18rem;">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FoodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -21,17 +38,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
+   <tbody>
+        <div class="card-columns">
+            @foreach (var item in Model)
+            {
+                <img src="@item.PhotoPath" />
+                <h5>@Html.DisplayFor(modelItem => item.FoodName)</h5>
+                <p>@Html.DisplayFor(modelItem => item.Category)</p>
+                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                <p>@Html.DisplayFor(modelItem => item.Price)</p>
+            }
+        </div>
+        </div>
+ <tbody>
+
 @foreach (var item in Model) {
-        <tr>
+    <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -40,14 +70,12 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
                 <a asp-action="Edit" asp-route-id="@item.FoodMenuID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.FoodMenuID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.FoodMenuID">Delete</a>
             </td>
         </tr>
 }
-    </tbody>
+</tbody>
 </table>
+
