@@ -11,51 +11,32 @@
 </p>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderItem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SpiceLevel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpiceLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width:20cm;margin:10px;">
+
+            <div class="card-body">
+                <div class="card-title">
+                    <h2><strong>Item Ordered:</strong> @item.OrderItem</h2>
+                </div>
+                <div class="card-text">
+                    <p><strong>Quantity:</strong> @item.Quantity</p>
+                    </div>
+                    <div class="card-text">
+                    <p><strong>Spice Level:</strong> @item.SpiceLevel</p>
+                    </div>
+                    <div class="card-text">
+                    <p><strong>Cost:</strong> @item.Cost</p>
+                    </div>
+                    <div class="card-text">
+                    <p><strong>Customer:</strong> @item.CustomerID</p>
+                    </div>
+                    <a asp-action="Edit" asp-route-id="@item.OrderID" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.OrderID" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.OrderID" class="btn btn-primary">Delete</a>
+
+            </div>
+        </div>
+    }
+</div>
