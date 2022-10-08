@@ -103,7 +103,7 @@ namespace RestaurantDB.Views.FoodMenus
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FoodMenuID,FoodName,Description,Price,Category")] FoodMenu foodMenu)
+        public async Task<IActionResult> Edit(int id, [Bind("FoodMenuID,FoodName,Description,Price,Category,FoodPhoto")] FoodMenu foodMenu)
         {
             if (id != foodMenu.FoodMenuID)
             {
@@ -112,6 +112,17 @@ namespace RestaurantDB.Views.FoodMenus
 
             if (ModelState.IsValid)
             {
+                if (foodMenu.FoodPhoto != null)
+                {
+                    string folder = "images/";
+                    folder += Guid.NewGuid().ToString() + "_" + foodMenu.FoodPhoto.FileName;
+
+                    foodMenu.PhotoPath = folder;
+
+                    string serverFolder = Path.Combine(_webHostEnv.WebRootPath, folder);
+
+                    await foodMenu.FoodPhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
                 try
                 {
                     _context.Update(foodMenu);
