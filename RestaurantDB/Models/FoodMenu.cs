@@ -11,6 +11,7 @@ namespace RestaurantDB.Models
 
         [Required]
         [Display(Name = "Item Name")]
+        [MaxLength(20,ErrorMessage = "Item name exceeds limit")]
         public string FoodName { get; set; }
 
         public string Description { get; set; }
@@ -19,6 +20,8 @@ namespace RestaurantDB.Models
         public double Price { get; set; }
         
         [Required]
+        [MinLength(5,ErrorMessage = "Enter valid category")]//shortest category name is 5 characters i.e. Mains
+        [MaxLength(7,ErrorMessage = "Enter valid category")]//longest category name is 7 characters i.e. deserts, entrees
         public string Category { get; set; }
 
         [NotMapped]

@@ -10,12 +10,17 @@ namespace RestaurantDB.Models
 
         [Required]
         [Display(Name = "Order Item")]
+        [MaxLength(20, ErrorMessage = "Item name exceeds limit")]
         public string OrderItem { get; set; }
 
         [Required]
+        [MaxLength(2,ErrorMessage = "Enter a valid quantity - between 1 and 99")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
+
         public int Quantity { get; set; }
         
         [Display(Name = "Spice Level")]
+        [MaxLength (15,ErrorMessage ="Enter a valid spice level (Mild,Mild-Medium,Medium,Medium-Hot or Hot")]
         public string SpiceLevel { get; set; }
         
         [Required]
