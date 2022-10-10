@@ -219,7 +219,7 @@ namespace RestaurantDB.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RestaurantWebApp.Models.Customer", b =>
+            modelBuilder.Entity("RestaurantDB.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerID")
                         .ValueGeneratedOnAdd()
@@ -246,7 +246,7 @@ namespace RestaurantDB.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("RestaurantWebApp.Models.FoodMenu", b =>
+            modelBuilder.Entity("RestaurantDB.Models.FoodMenu", b =>
                 {
                     b.Property<int>("FoodMenuID")
                         .ValueGeneratedOnAdd()
@@ -275,7 +275,7 @@ namespace RestaurantDB.Migrations
                     b.ToTable("FoodMenu");
                 });
 
-            modelBuilder.Entity("RestaurantWebApp.Models.Order", b =>
+            modelBuilder.Entity("RestaurantDB.Models.Order", b =>
                 {
                     b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
@@ -356,9 +356,9 @@ namespace RestaurantDB.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RestaurantWebApp.Models.Order", b =>
+            modelBuilder.Entity("RestaurantDB.Models.Order", b =>
                 {
-                    b.HasOne("RestaurantWebApp.Models.Customer", "Customer")
+                    b.HasOne("RestaurantDB.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)

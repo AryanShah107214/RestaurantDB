@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantWebApp.Models
+namespace RestaurantDB.Models
 {
     public class Order
     {

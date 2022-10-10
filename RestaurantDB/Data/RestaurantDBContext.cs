@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using RestaurantWebApp.Models;
+using RestaurantDB.Models;
 
 namespace RestaurantDB.Data
 {
@@ -16,12 +16,14 @@ namespace RestaurantDB.Data
         }
 
 
-        public DbSet<RestaurantWebApp.Models.Order> Order { get; set; }
+        public DbSet<RestaurantDB.Models.Order> Order { get; set; }
 
-        public DbSet<RestaurantWebApp.Models.Customer> Customer { get; set; }
+        public DbSet<RestaurantDB.Models.Customer> Customer { get; set; }
 
-        //public DbSet<RestaurantWebApp.Models.Invoice> Invoice { get; set; }
+        //public DbSet<RestaurantDB.Models.Invoice> Invoice { get; set; }
 
-        public DbSet<RestaurantWebApp.Models.FoodMenu> FoodMenu { get; set; }
+        public DbSet<RestaurantDB.Models.FoodMenu> FoodMenu { get; set; }
+
+
     }
 }

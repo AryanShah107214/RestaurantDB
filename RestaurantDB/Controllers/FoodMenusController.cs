@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantDB.Data;
-using RestaurantWebApp.Models;
+using RestaurantDB.Models;
 
 namespace RestaurantDB.Views.FoodMenus
 {
@@ -24,9 +24,33 @@ namespace RestaurantDB.Views.FoodMenus
         }
 
         // GET: FoodMenus
-        public async Task<IActionResult> Index()
+
+        //public async Task<IActionResult> Index(string foodCategory)
+        //{
+
+        //    //Uses LINQ to get list of categories
+        //    IQueryable<string> categoryQuery = from f in _context.FoodMenu
+        //                                       orderby f.Category
+        //                                       select f.Category;
+        //    var foods = from f in _context.FoodMenu
+        //                 select f;
+
+
+
+        //    return View(await foods.ToListAsync());
+        //}
+        public ActionResult Index(string searchBy, string search)
         {
-            return View(await _context.FoodMenu.ToListAsync());
+            if (searchBy == "FoodName")
+            {
+                return View(_context.FoodMenu.Where(x => x.FoodName.Contains(search) || search == null).ToList());
+
+            }
+            else
+            {
+                return View(_context.FoodMenu.Where(x => x.Category.Contains(search) || search == null).ToList());
+
+            }
         }
 
         // GET: FoodMenus/Details/5

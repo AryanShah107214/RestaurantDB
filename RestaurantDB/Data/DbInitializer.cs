@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RestaurantDB.Models;
-using RestaurantWebApp.Models;
 
 namespace RestaurantDB.Data
 {

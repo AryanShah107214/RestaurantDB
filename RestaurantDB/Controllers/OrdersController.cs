@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantDB.Data;
-using RestaurantWebApp.Models;
+using RestaurantDB.Models;
 
 namespace RestaurantDB.Views.Orders
 {
@@ -20,10 +20,20 @@ namespace RestaurantDB.Views.Orders
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            var restaurantDBContext = _context.Order.Include(o => o.Customer);
-            return View(await restaurantDBContext.ToListAsync());
+            if (searchBy == "OrderItem")
+            {
+                return View(_context.Order.Where(x => x.OrderItem.StartsWith(search) || search == null).ToList());
+
+            }
+            else
+            {
+                return View(_context.Order.ToList());
+
+            }
+            //var restaurantDBContext = _context.Order.Include(o => o.Customer);
+            //return View(await restaurantDBContext.ToListAsync());
         }
 
         // GET: Orders/Details/5

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantDB.Data;
-using RestaurantWebApp.Models;
+using RestaurantDB.Models;
 
 namespace RestaurantDB.Views
 {
@@ -20,9 +20,19 @@ namespace RestaurantDB.Views
         }
 
         // GET: Customers
-        public IActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            return View( _context.Customer.ToList().OrderBy(Customer => Customer.FirstName));
+            if (searchBy == "LastName")
+            {
+                return View(_context.Customer.Where(x => x.LastName.Contains(search) || search == null).ToList());
+
+            }
+            else
+            {
+                return View(_context.Customer.Where(x => x.FirstName.Contains(search) || search == null).ToList());
+
+            }
+            //return View( _context.Customer.ToList().OrderBy(Customer => Customer.FirstName));
         }
 
         // GET: Customers/Details/5

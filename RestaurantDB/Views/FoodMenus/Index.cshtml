@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RestaurantWebApp.Models.FoodMenu>
+﻿@model IEnumerable<RestaurantDB.Models.FoodMenu>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,6 +10,23 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+<p>
+    @using(Html.BeginForm("Index","FoodMenus",FormMethod.Get))
+    {
+        <b>Search By:</b> @Html.RadioButton("searchBy","FoodName", true) <text>Food Name</text>
+        @Html.RadioButton("searchBy","Category") <text>Category</text> <br />
+        @Html.TextBox("search") <input type="submit" value="Search" />        
+    }
+
+</p>
+
+@if (Model.Count() == 0)
+{
+    <h2>Your search did not fetch any results</h2>
+}
+
+else 
+{
 <div class="row">
     @foreach (var item in Model)
     {
@@ -36,18 +53,7 @@
             </div>
     }
 </div>
-
-
-@*
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FoodMenuID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FoodMenuID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FoodMenuID">Delete</a>
-            </td>
-        </tr>*@
-
-
-
+}
 
 
 
