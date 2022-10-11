@@ -24,6 +24,9 @@ namespace RestaurantDB.Data
 
         public DbSet<RestaurantDB.Models.FoodMenu> FoodMenu { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }
