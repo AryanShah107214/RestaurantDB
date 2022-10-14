@@ -10,7 +10,7 @@ namespace RestaurantDB.Data
     {
         public static void Initialize(RestaurantDBContext context)
         {
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
 
             // Look for any students.
             if (context.FoodMenu.Any())
@@ -20,40 +20,40 @@ namespace RestaurantDB.Data
 
             var foodMenu = new FoodMenu[]
             {
-                new FoodMenu { FoodName = "Veg Manchurian", Category="Entrees",Price=650 },
-                new FoodMenu { FoodName = "Batata Vada", Category="Entrees",Price=650 },
-                new FoodMenu { FoodName = "Samosa (4 Pcs)", Category="Entrees",Price=650 },
-                new FoodMenu { FoodName = "Sabudana Vada (5 Pcs)", Category="Entrees",Price=650 },
+                new FoodMenu { FoodName = "Veg Manchurian", Category="Entrees",Price=6.50 },
+                new FoodMenu { FoodName = "Batata Vada", Category="Entrees",Price=6.50 },
+                new FoodMenu { FoodName = "Samosa (4 Pcs)", Category="Entrees",Price=6.50 },
+                new FoodMenu { FoodName = "Sabudana Vada (5 Pcs)", Category="Entrees",Price=6.50 },
 
-                new FoodMenu { FoodName = "Undhiyu", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Paneer Tikka Masala", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Paneer Kadhai", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Paneer Saagwala", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Shahi Paneer", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Jeera Aloo", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Dal Makhani", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Poori Bhaji", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Malai Kofta", Category="Mains",Price=1400 },
-                new FoodMenu { FoodName = "Dum Aloo", Category="Mains",Price=1400 },
+                new FoodMenu { FoodName = "Undhiyu", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Paneer Tikka Masala", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Paneer Kadhai", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Paneer Saagwala", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Shahi Paneer", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Jeera Aloo", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Dal Makhani", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Poori Bhaji", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Malai Kofta", Category="Mains",Price=14.00 },
+                new FoodMenu { FoodName = "Dum Aloo", Category="Mains",Price=14.00 },
 
-                new FoodMenu { FoodName = "Gulab Jamun", Category="Deserts",Price=900 },
-                new FoodMenu { FoodName = "Halwa", Category="Deserts",Price=900 },
-                new FoodMenu { FoodName = "Ras Malai", Category="Deserts",Price=900 },
-                new FoodMenu { FoodName = "Rasgulla", Category="Deserts",Price=900 },
-                new FoodMenu { FoodName = "Mango Barfi", Category="Deserts",Price=900 },
-                new FoodMenu { FoodName = "Boondi Ladoo", Category="Deserts",Price=900 },
-                new FoodMenu { FoodName = "Jalebi", Category="Deserts",Price=900 },
+                new FoodMenu { FoodName = "Gulab Jamun", Category="Deserts",Price=9.00 },
+                new FoodMenu { FoodName = "Halwa", Category="Deserts",Price=9.00 },
+                new FoodMenu { FoodName = "Ras Malai", Category="Deserts",Price=9.00 },
+                new FoodMenu { FoodName = "Rasgulla", Category="Deserts",Price=9.00 },
+                new FoodMenu { FoodName = "Mango Barfi", Category="Deserts",Price=9.00 },
+                new FoodMenu { FoodName = "Boondi Ladoo", Category="Deserts",Price=9.00 },
+                new FoodMenu { FoodName = "Jalebi", Category="Deserts",Price=9.00 },
 
-                new FoodMenu { FoodName = "Masala Chai", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Filter Coffee", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Mango Lassi", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Coke", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Pepsi", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Fanta", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Sprite", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Orange Juice", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Apple Juice", Category="Drinks",Price=600 },
-                new FoodMenu { FoodName = "Tropical Juice", Category="Drinks",Price=600 },
+                new FoodMenu { FoodName = "Masala Chai", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Filter Coffee", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Mango Lassi", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Coke", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Pepsi", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Fanta", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Sprite", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Orange Juice", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Apple Juice", Category="Drinks",Price=6.00 },
+                new FoodMenu { FoodName = "Tropical Juice", Category="Drinks",Price=6.00 },
             };
 
             context.FoodMenu.AddRange(foodMenu);

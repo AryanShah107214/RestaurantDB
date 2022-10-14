@@ -3,8 +3,14 @@
 @{
     ViewData["Title"] = "Index";
 }
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
 
-<h1>Index</h1>
+
+<h1>Customer</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -19,17 +25,17 @@
     }
 
 </p>
-@*@if (Model.Count() == 0)
+@if (Model.Count() == 0)
 {
     <h2>Your search did not fetch any results</h2>
 }
 
 else 
-{*@
+{
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="card" style="width:20cm;margin:10px;">
+        <div class="card col-lg-3" style="margin:10px;">
 
             <div class="card-body">
                 <div class="card-title">
@@ -48,4 +54,4 @@ else
         </div>
     }
 </div>
-@*}*@
+}

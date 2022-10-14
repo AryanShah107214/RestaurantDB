@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Orders</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -22,13 +22,14 @@
 {
     <h2>Your search did not fetch any results</h2>
 }
+//try doing the  count putting together here
 
 else 
 {
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="card" style="width:20cm;margin:10px;">
+        <div class="card col-lg-3" style="margin:10px;">
 
             <div class="card-body">
                 <div class="card-title">

@@ -1,0 +1,37 @@
+﻿.bgImg {
+    background-image: url('/images/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
+
+
+
+}
+
+
+p, h1 {
+    font-weight:bold;
+    color:white;
+}
+
+.title {
+    text-align:center;
+}
+
+.hours {
+    color:black;
+    text-align:center;
+}
+
+h2 {
+    text-align:center;
+    color:white;
+}
+
+.card {
+    opacity:.8;
+}
+
+.card-text {
+    color:black;
+}

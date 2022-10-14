@@ -22,14 +22,17 @@ namespace RestaurantDB.Views.Orders
         // GET: Orders
         public ActionResult Index(string searchBy, string search)
         {
+            //string view = View(_context.Order.Where(x => x.Customer.Count() > 1).ToList());
+
             if (searchBy == "OrderItem")
             {
+
                 return View(_context.Order.Where(x => x.OrderItem.StartsWith(search) || search == null).ToList());
 
             }
             else
             {
-                return View(_context.Order.ToList());
+                return View(_context.Order.ToList().OrderBy(x => x.CustomerID));
 
             }
             //var restaurantDBContext = _context.Order.Include(o => o.Customer);

@@ -24,15 +24,18 @@ namespace RestaurantDB.Views
         {
             if (searchBy == "LastName")
             {
-                return View(_context.Customer.Where(x => x.LastName.Contains(search) || search == null).ToList());
+                return View(_context.Customer.Where(x => x.LastName.StartsWith(search) || search == null).ToList());
+
+            }
+            else if (searchBy == "FirstName")
+            {
+                return View(_context.Customer.Where(x => x.FirstName.StartsWith(search) || search == null).ToList());
 
             }
             else
             {
-                return View(_context.Customer.Where(x => x.FirstName.Contains(search) || search == null).ToList());
-
+                return View(_context.Customer.ToList().OrderBy(Customer => Customer.FirstName));
             }
-            //return View( _context.Customer.ToList().OrderBy(Customer => Customer.FirstName));
         }
 
         // GET: Customers/Details/5

@@ -1,11 +1,30 @@
 ﻿@model IEnumerable<RestaurantDB.Models.FoodMenu>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Menu";
 }
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
 
-<h1>Index</h1>
-
+<h1>Menu</h1>
+<div style="text-align:center;">
+    <a asp-controller="FoodMenus" asp-action="Entrees">Entrees</a>
+    &ensp;
+    &ensp;
+    &ensp;
+    <a asp-controller="FoodMenus" asp-action="Mains">Mains</a>
+    &ensp;
+    &ensp;
+    &ensp;
+    <a asp-controller="FoodMenus" asp-action="Deserts">Deserts</a>
+    &ensp;
+    &ensp;
+    &ensp;
+    <a asp-controller="FoodMenus" asp-action="Drinks">Drinks</a>
+</div>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -30,7 +49,7 @@ else
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="card" style="width:20cm;margin:10px;">
+        <div class="card col-lg-3" style="margin:10px;">
 
             <img src = "@item.PhotoPath" class="card-img-top">
             <div class="card-body">

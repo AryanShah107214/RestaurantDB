@@ -25,32 +25,42 @@ namespace RestaurantDB.Views.FoodMenus
 
         // GET: FoodMenus
 
-        //public async Task<IActionResult> Index(string foodCategory)
-        //{
 
-        //    //Uses LINQ to get list of categories
-        //    IQueryable<string> categoryQuery = from f in _context.FoodMenu
-        //                                       orderby f.Category
-        //                                       select f.Category;
-        //    var foods = from f in _context.FoodMenu
-        //                 select f;
-
-
-
-        //    return View(await foods.ToListAsync());
-        //}
         public ActionResult Index(string searchBy, string search)
         {
             if (searchBy == "FoodName")
             {
-                return View(_context.FoodMenu.Where(x => x.FoodName.Contains(search) || search == null).ToList());
+                return View(_context.FoodMenu.Where(x => x.FoodName.StartsWith(search) || search == null).ToList());
+
+            }
+            else if(searchBy == "Category")
+            {
+                return View(_context.FoodMenu.Where(x => x.Category.StartsWith(search) || search == null).ToList());
 
             }
             else
             {
-                return View(_context.FoodMenu.Where(x => x.Category.Contains(search) || search == null).ToList());
-
+                return View(_context.FoodMenu.OrderBy(x => x.FoodName).ToList());
             }
+        }
+
+        public ActionResult Entrees()
+        {
+            return View(_context.FoodMenu.Where(x => x.Category == "Entrees").ToList());
+        }
+        public ActionResult Mains()
+        {
+            return View(_context.FoodMenu.Where(x => x.Category == "Mains").ToList());
+        }
+
+        public ActionResult Deserts()
+        {
+            return View(_context.FoodMenu.Where(x => x.Category == "Deserts").ToList());
+        }
+
+        public ActionResult Drinks()
+        {
+            return View(_context.FoodMenu.Where(x => x.Category == "Drinks").ToList());
         }
 
         // GET: FoodMenus/Details/5
