@@ -22,7 +22,6 @@ namespace RestaurantDB.Views.Orders
         // GET: Orders
         public ActionResult Index(string searchBy, string search)
         {
-            //string view = View(_context.Order.Where(x => x.Customer.Count() > 1).ToList());
 
             if (searchBy == "OrderItem")
             {
@@ -35,8 +34,6 @@ namespace RestaurantDB.Views.Orders
                 return View(_context.Order.ToList().OrderBy(x => x.CustomerID));
 
             }
-            //var restaurantDBContext = _context.Order.Include(o => o.Customer);
-            //return View(await restaurantDBContext.ToListAsync());
         }
 
         // GET: Orders/Details/5
