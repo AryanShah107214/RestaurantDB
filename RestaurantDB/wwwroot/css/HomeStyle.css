@@ -1,5 +1,5 @@
 ﻿.bgImg {
-    background-image: url('/images/bg.jpg');
+    background-image: url('/images/pexels-anil-sharma-10580198.jpg');
     background-repeat: no-repeat;
     background-attachment:fixed;
     background-size: cover;
@@ -11,7 +11,7 @@
 
 p, h1 {
     font-weight:bold;
-    color:white;
+    color:black;
 }
 
 .title {
@@ -25,7 +25,7 @@ p, h1 {
 
 h2 {
     text-align:center;
-    color:white;
+    color:black;
 }
 
 .card {

@@ -22,8 +22,7 @@ namespace RestaurantDB.Models
         
         [Required]
         [Display(Name = "Mobile Number")]
-        [MinLength(9,ErrorMessage = "Please enter a valid phone number")]//if user enters a phone number without 0 at the front, it should still be valid i.e. 272222222
-        [MaxLength(12,ErrorMessage = "Please enter a valid phone number")] //if user enters a phone number with +64 at the front, it should still be valid i.e. +64272222222
+        [Range(0201111111,uint.MaxValue, ErrorMessage = "Please enter a valid mobile number")]
         public uint PhoneNumber { get; set; }
     }
 }
