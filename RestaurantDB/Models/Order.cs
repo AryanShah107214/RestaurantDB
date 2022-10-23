@@ -14,8 +14,7 @@ namespace RestaurantDB.Models
         public string OrderItem { get; set; }
 
         [Required]
-        //[MaxLength(2,ErrorMessage = "Enter a valid quantity - between 1 and 99")]
-        [Range(1, 99, ErrorMessage = "Please enter a value bigger than {1}")]
+        [Range(1, 99, ErrorMessage = "Enter a valid quantity - between 1 and 99")]
 
         public int Quantity { get; set; }
         

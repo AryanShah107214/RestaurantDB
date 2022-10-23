@@ -26,7 +26,6 @@ namespace RestaurantDB.Models
 
         [NotMapped]
         [Display(Name = "Upload photo of item")]
-        [Required]
         public IFormFile FoodPhoto { get; set; }
 
         public string PhotoPath { get; set; }
