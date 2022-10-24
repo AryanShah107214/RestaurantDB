@@ -22,6 +22,7 @@ namespace RestaurantDB.Views
         // GET: Customers
         public ActionResult Index(string searchBy, string search)
         {
+            //enables the search bar to filter properly
             if (searchBy == "LastName")
             {
                 return View(_context.Customer.Where(x => x.LastName.StartsWith(search) || search == null).ToList());

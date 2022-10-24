@@ -7,12 +7,16 @@ namespace RestaurantDB.Models
 {
     public class FoodMenu
     {
+        //applied validation like making the field required, maximum and minimum lengths and displaying the name differently than the 
+
+
         public int FoodMenuID { get; set; }
 
         [Required]
         [Display(Name = "Item Name")]
         [MaxLength(20,ErrorMessage = "Item name exceeds limit")]
         public string FoodName { get; set; }
+
 
         public string Description { get; set; }
 

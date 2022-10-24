@@ -20,8 +20,6 @@ namespace RestaurantDB.Data
 
         public DbSet<RestaurantDB.Models.Customer> Customer { get; set; }
 
-        //public DbSet<RestaurantDB.Models.Invoice> Invoice { get; set; }
-
         public DbSet<RestaurantDB.Models.FoodMenu> FoodMenu { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -22,7 +22,7 @@ namespace RestaurantDB.Views.Orders
         // GET: Orders
         public ActionResult Index(string searchBy, string search)
         {
-
+            //enables the search bar to filter properly
             if (searchBy == "OrderItem")
             {
 
@@ -75,6 +75,7 @@ namespace RestaurantDB.Views.Orders
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            //causes the email to be used in place of the customer ID
             ViewData["CustomerID"] = new SelectList(_context.Customer, "CustomerID", "Email", order.CustomerID);
             return View(order);
         }

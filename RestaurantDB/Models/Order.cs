@@ -6,7 +6,11 @@ namespace RestaurantDB.Models
 {
     public class Order
     {
+        //applied validation like making the field required, maximum and minimum lengths and displaying the name differently than the 
+
+
         public int OrderID { get; set; }
+
 
         [Required]
         [Display(Name = "Order Item")]
@@ -15,7 +19,6 @@ namespace RestaurantDB.Models
 
         [Required]
         [Range(1, 99, ErrorMessage = "Enter a valid quantity - between 1 and 99")]
-
         public int Quantity { get; set; }
         
         [Display(Name = "Spice Level")]

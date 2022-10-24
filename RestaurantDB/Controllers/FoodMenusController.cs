@@ -28,6 +28,7 @@ namespace RestaurantDB.Views.FoodMenus
 
         public ActionResult Index(string searchBy, string search)
         {
+            //enables the search bar to filter properly
             if (searchBy == "FoodName")
             {
                 return View(_context.FoodMenu.Where(x => x.FoodName.StartsWith(search) || search == null).ToList());
@@ -44,20 +45,25 @@ namespace RestaurantDB.Views.FoodMenus
             }
         }
 
+        //Displays only records with the category - entrees on this page
         public ActionResult Entrees()
         {
             return View(_context.FoodMenu.Where(x => x.Category == "Entrees").ToList());
         }
+
+        //Displays only records with the category - mains on this page
         public ActionResult Mains()
         {
             return View(_context.FoodMenu.Where(x => x.Category == "Mains").ToList());
         }
 
+        //Displays only records with the category - deserts on this page
         public ActionResult Deserts()
         {
             return View(_context.FoodMenu.Where(x => x.Category == "Deserts").ToList());
         }
 
+        //Displays only records with the category - drinks on this page
         public ActionResult Drinks()
         {
             return View(_context.FoodMenu.Where(x => x.Category == "Drinks").ToList());
@@ -98,13 +104,11 @@ namespace RestaurantDB.Views.FoodMenus
             {
                 if (foodMenu.FoodPhoto != null)
                 {
-                    string folder = "images/";
+                    //adds the image to the record by saving it in the Foods folder
+                    string folder = "images/Foods/";
                     folder += Guid.NewGuid().ToString() + "_" + foodMenu.FoodPhoto.FileName;
-
                     foodMenu.PhotoPath = folder;
-
                     string serverFolder = Path.Combine(_webHostEnv.WebRootPath, folder);
-
                     await foodMenu.FoodPhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
                 }
 

@@ -10,6 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+@*Created search bar to filter records by Order Item*@
 <p>
     @using(Html.BeginForm("Index","Orders",FormMethod.Get))
     {
@@ -18,12 +19,13 @@
     }
 </p>
 
+@*Displays message if there are no records or if no records match the search*@
 @if (Model.Count() == 0) 
 {
     <h2>Your search did not fetch any results</h2>
 }
-//try doing the  count putting together here
 
+@*Otherwise, the records are displayed in a cards UI*@
 else 
 {
 <div class="row">

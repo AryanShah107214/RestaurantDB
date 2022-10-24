@@ -7,12 +7,13 @@
 <h1>Drinks</h1>
 
 
-
+@*Displays message if there are no drinks*@
 @if (Model.Count() == 0)
 {
     <h2>Your search did not fetch any results</h2>
 }
 
+@*Othwerwise, displays all drinks in a cards UI*@
 else 
 {
 <div class="row">

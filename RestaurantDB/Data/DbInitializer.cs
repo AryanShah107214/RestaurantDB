@@ -18,6 +18,7 @@ namespace RestaurantDB.Data
                 return;   // DB has been seeded
             }
 
+            //Data to be seeded in to the menu
             var foodMenu = new FoodMenu[]
             {
                 new FoodMenu { FoodName = "Veg Manchurian", Category="Entrees",Price=6.50,Description="A delicious dish of veggie balls dunked into a sauce with hot and sweet flavors." },
@@ -56,8 +57,9 @@ namespace RestaurantDB.Data
             };
 
             context.FoodMenu.AddRange(foodMenu);
-            context.SaveChanges();
+            context.SaveChanges();//adds and saves it to the database and displays it on the web page
 
+            //data to be seeded in to the customers page
             var Customer = new Customer[]
             {
                 new Customer { LastName = "Adams", FirstName = "Jack", Email = "adambandler@gmail.com", PhoneNumber = 0278542364 },
@@ -69,8 +71,9 @@ namespace RestaurantDB.Data
             };
 
             context.Customer.AddRange(Customer);
-            context.SaveChanges();
+            context.SaveChanges();//adds and saves it to the database and displays it on the web page
 
+            //data to be seeded in to the orders page
             var Order = new Order[]
 {
                 new Order { OrderItem="Fanta",Quantity=1,SpiceLevel="N/A",Cost=6.00,CustomerID=1 },
@@ -85,14 +88,10 @@ namespace RestaurantDB.Data
                 new Order { OrderItem="Fanta",Quantity=2,SpiceLevel="",Cost=12.00,CustomerID=3 },
                 new Order { OrderItem="Malai Kofta",Quantity=1,SpiceLevel="Medium-Hot",Cost=14.00,CustomerID=3 },
                 new Order { OrderItem="Shahi Paneer",Quantity=1,SpiceLevel="Mild-Medium",Cost=14.00,CustomerID=3 },
-
-
-
-
 };
 
             context.Order.AddRange(Order);
-            context.SaveChanges();
+            context.SaveChanges();//adds and saves it to the database and displays it on the web page
         }
     }
 }

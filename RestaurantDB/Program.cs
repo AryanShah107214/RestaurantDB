@@ -26,8 +26,10 @@ namespace RestaurantDB
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                //creates database and if it exists, seeds it and handles errors that could occur
                 try
                 {
+
                     var context = services.GetRequiredService<RestaurantDBContext>();
                     context.Database.EnsureCreated();
                     DbInitializer.Initialize(context);
